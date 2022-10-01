@@ -6,11 +6,7 @@ public class FlanUFO : MonoBehaviour
 {
     public float moveSpeed = 10f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public AudioSource bounceSound;
 
     // Update is called once per frame
     void Update()
@@ -18,5 +14,10 @@ public class FlanUFO : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
 
         transform.Translate(new Vector3(horizontalInput, 0, 0) * moveSpeed * Time.deltaTime);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        bounceSound.Play();
     }
 }
