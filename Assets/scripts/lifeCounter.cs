@@ -10,8 +10,8 @@ public class lifeCounter : MonoBehaviour
 
     public void addLife()
     {
-        Instantiate(LifePrefab);
-        LifePrefab.transform.SetParent(LifeContainer);
+        GameObject temp = Instantiate(LifePrefab);
+        temp.transform.SetParent(LifeContainer);
     }
 
     public void removeLife()
@@ -22,7 +22,7 @@ public class lifeCounter : MonoBehaviour
         }
         else
         {
-            Destroy(LifeContainer.GetChild(0));
+            Destroy(LifeContainer.GetChild(0).gameObject);
         }
     }
 

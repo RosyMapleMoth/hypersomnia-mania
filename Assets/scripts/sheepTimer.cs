@@ -12,6 +12,7 @@ public class sheepTimer : MonoBehaviour
     public TextMeshProUGUI SheepTwoCount;
     public Image SheepThree; 
     public TextMeshProUGUI SheepThreeCount;
+    public TextMeshProUGUI TimerCounter;
 
     public bool start = false;
 
@@ -21,19 +22,20 @@ public class sheepTimer : MonoBehaviour
 
     public void TimerActiveUpdate(float timer)
     {
-        float remainder = timer % 1;
+        TimerCounter.text = timer.ToString("N2");
+        float remainder = (timer / 2f) % 1;
         if (remainder > 0.66f)
         {
             SheepOne.gameObject.SetActive(true);
-            SheepOneCount.text = Mathf.Ceil(timer).ToString("N");
-            SheepTwo.gameObject.SetActive(false);
+            SheepOneCount.text = Mathf.Ceil(timer).ToString("0.##");
+            //SheepTwo.gameObject.SetActive(false);
             SheepThree.gameObject.SetActive(false);
         }
         else if (remainder > 0.33f)
         {
             SheepOne.gameObject.SetActive(false);
             SheepTwo.gameObject.SetActive(true);
-            SheepTwoCount.text = Mathf.Ceil(timer).ToString("N");
+            //SheepTwoCount.text = Mathf.Ceil(timer).ToString("0.##");
             SheepThree.gameObject.SetActive(false);
         }
         else
@@ -41,7 +43,7 @@ public class sheepTimer : MonoBehaviour
             SheepOne.gameObject.SetActive(false);
             SheepTwo.gameObject.SetActive(false);
             SheepThree.gameObject.SetActive(true);
-            SheepThreeCount.text = Mathf.Ceil(timer).ToString("N");
+            SheepThreeCount.text = Mathf.Ceil(timer).ToString("0.##");
 
         }
     }
@@ -49,7 +51,7 @@ public class sheepTimer : MonoBehaviour
     public void init(float time)
     {
         SheepOne.gameObject.SetActive(true);
-        SheepOneCount.text = Mathf.Ceil(time).ToString("N");
+        //SheepOneCount.text = Mathf.Ceil(time).ToString("0.##");
         SheepTwo.gameObject.SetActive(false);
         SheepThree.gameObject.SetActive(false);
     }
