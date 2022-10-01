@@ -18,8 +18,13 @@ public class QuitGame : MonoBehaviour
         
     }
 
-    public void Exit()
+    public void Quit()
     {
-        Application.Quit();
+        #if UNITY_STANDALONE
+            Application.Quit();
+        #endif
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #endif
     }
 }
