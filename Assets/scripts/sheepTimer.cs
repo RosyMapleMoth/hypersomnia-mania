@@ -27,8 +27,8 @@ public class sheepTimer : MonoBehaviour
         if (remainder > 0.66f)
         {
             SheepOne.gameObject.SetActive(true);
-            SheepOneCount.text = Mathf.Ceil(timer).ToString("0.##");
-            //SheepTwo.gameObject.SetActive(false);
+            //SheepOneCount.text = Mathf.Ceil(timer).ToString("0.##");
+            SheepTwo.gameObject.SetActive(false);
             SheepThree.gameObject.SetActive(false);
         }
         else if (remainder > 0.33f)
@@ -43,7 +43,7 @@ public class sheepTimer : MonoBehaviour
             SheepOne.gameObject.SetActive(false);
             SheepTwo.gameObject.SetActive(false);
             SheepThree.gameObject.SetActive(true);
-            SheepThreeCount.text = Mathf.Ceil(timer).ToString("0.##");
+            //SheepThreeCount.text = Mathf.Ceil(timer).ToString("0.##");
 
         }
     }
