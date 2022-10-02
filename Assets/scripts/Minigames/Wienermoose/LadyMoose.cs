@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class LadyMoose : MonoBehaviour
 {
+    public UiGameManager game;
     public AudioSource sound;
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("a");
         if(collision.gameObject.CompareTag("Player"))
         {
-            Destroy(transform.gameObject);
+            game.winMiniGame();
         }
     }
 }
