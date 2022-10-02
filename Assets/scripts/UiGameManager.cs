@@ -8,7 +8,11 @@ public class UiGameManager : MonoBehaviour
     /// <summary>
     /// the scenes to go through in order DO NOT UPDATE OUTSIDE OF PREFAB
     /// </summary>
-    private static string[] scenes = {"example"};
+    private static string[] scenes = {"example","example"};
+
+    private static string[] prompts = {"prompt","prompt"};
+
+    private const int maxlevel = 1;
 
     /// <summary>
     /// Turn on to reload the the DEBUG Scene 
@@ -16,9 +20,9 @@ public class UiGameManager : MonoBehaviour
     public bool DEBUG_MODE;
 
     /// <summary>
-    /// set to the name of the scene you want to load
+    /// set this to true if your game wants to 
     /// </summary>
-    //public string DEBUG_SCENE;
+    public bool failsOnTimeOut = true;
 
     // current level
     private static int level;
@@ -42,14 +46,12 @@ public class UiGameManager : MonoBehaviour
     /// </summary>
     public bool GameOver = false;
     public static bool Puased = true;
-    
     public GameObject GameOverUi;
-
-
     // UI handlers see other files
     public TextMeshProUGUI levelCount;
     public lifeCounter lifeHandler;
     public sheepTimer timerHandler;
+    public sceneSwitcher sceneHandler;
 
 
 
@@ -71,17 +73,21 @@ public class UiGameManager : MonoBehaviour
     public static void StartGameFromlevel(int levelToStartFrom)
     {
         startGame();
-        SceneManager.LoadScene(scenes[levelToStartFrom]);
+        PromptHandler.NextLevel = scenes[levelToStartFrom];
+        PromptHandler.timerMax = 5f;
+        SceneManager.LoadScene(prompts[levelToStartFrom]);
     }
 
     /// <summary>
     /// Use this to start at a specific scene if you do not know the index of the scene in order
     /// </summary>
     /// <param name="levelToStartFrom">Name of scene to load</param>
-    public static void StartGameFromScene(string levelToStartFrom)
+    public static void StartGameFromScene(string promptToStart,string levelToStartFrom)
     {
         startGame();
-        SceneManager.LoadScene(levelToStartFrom);
+        PromptHandler.NextLevel = levelToStartFrom;
+        PromptHandler.timerMax = 5f;
+        SceneManager.LoadScene(promptToStart);
     }
 
 
@@ -113,11 +119,11 @@ public class UiGameManager : MonoBehaviour
         {
             levelTimer -= Time.deltaTime;
             timerHandler.TimerActiveUpdate(levelTimer); 
-        }
-        else
-        {
-           loadNextScene(); 
-        }
+            if (levelTimer <= 0)
+            {
+                loadNextScene(); 
+            }
+        }  
     }
 
 
@@ -130,7 +136,9 @@ public class UiGameManager : MonoBehaviour
         if (DEBUG_MODE)
         {
             //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            Debug.Log("NO Prompt loading with Debug scenes");
+            sceneHandler.LoadLevel(SceneManager.GetActiveScene().name,2);
+
         }
         else
         {
@@ -144,27 +152,24 @@ public class UiGameManager : MonoBehaviour
             {
                 try
                 {
+                    //PromptHandler.Prompt = 
                     //SceneManager.LoadScene(scenes[level]);
-                    SceneManager.LoadScene((scenes[level]));
+                    PromptHandler.NextLevel = scenes[level];
+                    PromptHandler.timerMax = 5f;
+                    sceneHandler.LoadLevel(((prompts[level])), 2);
                 }
                 catch
                 {
+                    PromptHandler.NextLevel = scenes[scenes.Length-1];
+                    PromptHandler.timerMax = 5f;
                     // if we do not have any more levels continuasly reload last scene
-                    SceneManager.LoadScene((scenes[scenes.Length-1]));
+                    sceneHandler.LoadLevel(prompts[prompts.Length-1],2);
                 }
 
             }
         }
     }
 
-    private IEnumerator sceneloadHelper(string levelToLoad)
-    {
-        transition.SetTrigger("start");
-
-        yield return new WaitForSeconds(2);
-
-        SceneManager.LoadScene(levelToLoad);
-    }
 
 
     /// <summary>
