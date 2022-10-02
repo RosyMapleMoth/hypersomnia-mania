@@ -130,7 +130,7 @@ public class UiGameManager : MonoBehaviour
         if (DEBUG_MODE)
         {
             //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            StartCoroutine(sceneloadHelper(SceneManager.GetActiveScene().name));
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         else
         {
@@ -145,12 +145,12 @@ public class UiGameManager : MonoBehaviour
                 try
                 {
                     //SceneManager.LoadScene(scenes[level]);
-                    StartCoroutine(sceneloadHelper(scenes[level]));
+                    SceneManager.LoadScene((scenes[level]));
                 }
                 catch
                 {
                     // if we do not have any more levels continuasly reload last scene
-                    StartCoroutine(sceneloadHelper(scenes[scenes.Length-1]));
+                    SceneManager.LoadScene((scenes[scenes.Length-1]));
                 }
 
             }
