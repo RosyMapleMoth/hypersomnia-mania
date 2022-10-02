@@ -8,9 +8,9 @@ public class UiGameManager : MonoBehaviour
     /// <summary>
     /// the scenes to go through in order DO NOT UPDATE OUTSIDE OF PREFAB
     /// </summary>
-    private static string[] scenes = {"Wienermoose","WitchCar"};
+    private static string[] scenes = {"Wienermoose","WitchCar","birdandMole"};
 
-    private static string[] prompts = {"promptexample","promptexample"};
+    private static string[] prompts = {"promptexample","promptexample","moleBirdPrompt"};
 
     private const int maxlevel = 1;
 
@@ -18,6 +18,8 @@ public class UiGameManager : MonoBehaviour
     /// Turn on to reload the the DEBUG Scene 
     /// </summary>
     public bool DEBUG_MODE;
+
+    private bool Ended = false;
 
     /// <summary>
     /// set this to true if your game wants to 
@@ -203,7 +205,11 @@ public class UiGameManager : MonoBehaviour
     /// </summary>
     public void winMiniGame()
     {
-        loadNextScene();
+        if (!Ended)
+        {
+            Ended = true;
+            loadNextScene();
+        }
     }
 
 
@@ -212,9 +218,13 @@ public class UiGameManager : MonoBehaviour
     /// </summary>
     public void loseMiniGame()
     {
-        //TBD
-        removeLife();
-        loadNextScene();
+        if (!Ended)
+        {
+            Ended = true;
+            removeLife();
+            loadNextScene();
+        }
+        
     }
 
 
