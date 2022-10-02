@@ -33,6 +33,8 @@ public class UiGameManager : MonoBehaviour
     private const int STARTING_LEVEL = 0;
 
 
+    public Animator transition;
+
 
     /// <summary>
     /// track what state the game is in
@@ -127,33 +129,41 @@ public class UiGameManager : MonoBehaviour
         // while in debug mode reload the same scene over and over level will not tic up properly nor will game over screen occure
         if (DEBUG_MODE)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            StartCoroutine(sceneloadHelper(SceneManager.GetActiveScene().name));
         }
         else
         {
-
-        }
-
-
-        level++;
-        if (lives <= 0)
-        {
-            // if zero lives end game
-            EndGame();
-        }
-        else
-        {
-            try
+            level++;
+            if (lives <= 0)
             {
-                SceneManager.LoadScene(scenes[level]);
+                // if zero lives end game
+                EndGame();
             }
-            catch
+            else
             {
-                // if we do not have any more levels continuasly reload last scene
-                SceneManager.LoadScene(scenes[scenes.Length-1]);
-            }
+                try
+                {
+                    //SceneManager.LoadScene(scenes[level]);
+                    StartCoroutine(sceneloadHelper(scenes[level]));
+                }
+                catch
+                {
+                    // if we do not have any more levels continuasly reload last scene
+                    StartCoroutine(sceneloadHelper(scenes[scenes.Length-1]));
+                }
 
+            }
         }
+    }
+
+    private IEnumerator sceneloadHelper(string levelToLoad)
+    {
+        transition.SetTrigger("start");
+
+        yield return new WaitForSeconds(2);
+
+        SceneManager.LoadScene(levelToLoad);
     }
 
 
