@@ -8,7 +8,7 @@ public class UiGameManager : MonoBehaviour
     /// <summary>
     /// the scenes to go through in order DO NOT UPDATE OUTSIDE OF PREFAB
     /// </summary>
-    private static string[] scenes = {"example","example"};
+    private static string[] scenes = {"Wienermoose","WitchCar"};
 
     private static string[] prompts = {"promptexample","promptexample"};
 
