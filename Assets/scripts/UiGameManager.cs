@@ -10,7 +10,7 @@ public class UiGameManager : MonoBehaviour
     /// </summary>
     private static string[] scenes = {"example","example"};
 
-    private static string[] prompts = {"prompt","prompt"};
+    private static string[] prompts = {"promptexample","promptexample"};
 
     private const int maxlevel = 1;
 
