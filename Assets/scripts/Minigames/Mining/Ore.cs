@@ -72,6 +72,7 @@ public class Ore : MonoBehaviour
 
             drop.AddComponent<SpriteRenderer>();
             drop.GetComponent<SpriteRenderer>().sprite = gumdrops[Random.Range(0, gumdrops.Length)];
+            drop.GetComponent<SpriteRenderer>().sortingOrder = 11;
         }
     }
 }
