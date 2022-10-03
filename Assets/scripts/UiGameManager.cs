@@ -42,6 +42,7 @@ public class UiGameManager : MonoBehaviour
     public Animator transition;
 
 
+    private static int internalLevel;
     /// <summary>
     /// track what state the game is in
     /// TODO change to enums
@@ -64,6 +65,7 @@ public class UiGameManager : MonoBehaviour
     {
         level = STARTING_LEVEL;
         lives = STARTING_LIVES;
+        internalLevel = STARTING_LEVEL;
         Puased = false; 
     }
 
@@ -150,6 +152,13 @@ public class UiGameManager : MonoBehaviour
                 removeLife();
             }
             level++;
+            internalLevel++;
+
+            if (internalLevel >= scenes.Length)
+            {
+                internalLevel = 0;
+            }
+
             if (lives <= 0)
             {
                 // if zero lives end game
@@ -161,9 +170,9 @@ public class UiGameManager : MonoBehaviour
                 {
                     //PromptHandler.Prompt = 
                     //SceneManager.LoadScene(scenes[level]);
-                    PromptHandler.NextLevel = scenes[level];
+                    PromptHandler.NextLevel = scenes[internalLevel];
                     PromptHandler.timerMax = 5f;
-                    sceneHandler.LoadLevel(((prompts[level])), 2);
+                    sceneHandler.LoadLevel(((prompts[internalLevel])), 2);
                 }
                 catch
                 {
@@ -213,6 +222,7 @@ public class UiGameManager : MonoBehaviour
         if (!Ended)
         {
             Ended = true;
+            failsOnTimeOut = false;
             loadNextScene();
         }
     }

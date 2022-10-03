@@ -95,7 +95,7 @@ public class birdAndMole : MonoBehaviour
 
     private void InputUpdate()
     {
-        if (Input.GetKeyDown("down"))
+        if (Input.GetAxisRaw("Vertical") < 0) 
         {
             birds[0].SetActive(false);
             birds[1].SetActive(false);
@@ -103,7 +103,7 @@ public class birdAndMole : MonoBehaviour
             idle.SetActive(false);
             last = birdPos.Center;
         }
-        if (Input.GetKeyDown("left"))
+        if (Input.GetAxisRaw("Horizontal") < 0)
         {
             birds[0].SetActive(true);
             birds[1].SetActive(false);
@@ -111,7 +111,7 @@ public class birdAndMole : MonoBehaviour
             idle.SetActive(false);
             last = birdPos.Left;
         }
-        if (Input.GetKeyDown("right"))
+        if (Input.GetAxisRaw("Horizontal") > 0)
         {
             birds[0].SetActive(false);
             birds[1].SetActive(true);
@@ -120,7 +120,7 @@ public class birdAndMole : MonoBehaviour
             last = birdPos.Right;
         }
 
-        if (Input.GetKeyUp("down") && last == birdPos.Center)
+        if (Input.GetAxisRaw("Vertical") == 0 && last == birdPos.Center)
         {
             birds[0].SetActive(false);
             birds[1].SetActive(false);
@@ -129,7 +129,7 @@ public class birdAndMole : MonoBehaviour
             idle.SetActive(true);
 
         }
-        if (Input.GetKeyUp("left") && last == birdPos.Left)
+        if (Input.GetAxisRaw("Horizontal") == 0 && last == birdPos.Left)
         {
             birds[0].SetActive(false);
             birds[1].SetActive(false);
@@ -137,7 +137,7 @@ public class birdAndMole : MonoBehaviour
             idle.SetActive(true);
             last = birdPos.up;
         }   
-        if (Input.GetKeyUp("right") && last == birdPos.Right)
+        if (Input.GetAxisRaw("Horizontal") == 0 && last == birdPos.Right)
         {
             birds[0].SetActive(false);
             birds[1].SetActive(false);
