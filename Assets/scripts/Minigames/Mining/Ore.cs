@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Ore : MonoBehaviour
 {
+    public AudioSource hitSound;
+    public AudioSource explodeSound;
     public Sprite[] sprites;
     public Sprite[] gumdrops;
 
@@ -26,6 +28,7 @@ public class Ore : MonoBehaviour
     {
         if (hp <= 0)
         {
+            explodeSound.Play();
             ui.failsOnTimeOut = false;
             SpawnGumdrops();
             Destroy(gameObject);
@@ -41,12 +44,13 @@ public class Ore : MonoBehaviour
 
         if(Input.GetMouseButtonDown(0))
         {
-            hp--;
+            Hit();
         }
     }
 
     public void Hit()
     {
+        hitSound.Play();
         hp--;
     }
 
