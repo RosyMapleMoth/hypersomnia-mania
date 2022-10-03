@@ -50,4 +50,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MiniGames/WitchCar/WitchCarPrompt.unity
     guid: ecf9ce08e7c744523bf42544a756efd6
+  - enabled: 1
+    path: Assets/Scenes/MiniGames/Minning/miningPrompt.unity
+    guid: 90d3f3ff2bdb360c8bc5c2bfe622903c
+  - enabled: 1
+    path: Assets/Scenes/MiniGames/birthday/Birthday.unity
+    guid: 343be87d8973cb74aa1dacd46788949b
+  - enabled: 1
+    path: Assets/Scenes/MiniGames/armidillo/armidlilloPrompt.unity
+    guid: 5d0cdbd16cb065e2f996814450165c8a
   m_configObjects: {}
