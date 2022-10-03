@@ -8,9 +8,9 @@ public class UiGameManager : MonoBehaviour
     /// <summary>
     /// the scenes to go through in order DO NOT UPDATE OUTSIDE OF PREFAB
     /// </summary>
-    private static string[] scenes = {"Wienermoose","WitchCar","birdandMole","Mining","armidillo"};
+    private static string[] scenes = {"Wienermoose","WitchCar","birdandMole","Mining","armidillo","Birthday"};
 
-    private static string[] prompts = {"promptexample","promptexample","moleBirdPrompt","promptexample","promptexample"};
+    private static string[] prompts = {"wienerMoosePrompt","WitchCarPrompt","moleBirdPrompt","miningPrompt","armidlilloPrompt","BirthdayPrompt"};
 
     private const int maxlevel = 1;
 
@@ -18,6 +18,8 @@ public class UiGameManager : MonoBehaviour
     /// Turn on to reload the the DEBUG Scene 
     /// </summary>
     public bool DEBUG_MODE;
+
+    public GameMode MODE_TO_DEBUG;
 
     private bool Ended = false;
 
@@ -52,20 +54,25 @@ public class UiGameManager : MonoBehaviour
     public GameObject GameOverUi;
     // UI handlers see other files
     public TextMeshProUGUI levelCount;
+    public TextMeshProUGUI levelBacklightCount;
     public lifeCounter lifeHandler;
     public sheepTimer timerHandler;
     public sceneSwitcher sceneHandler;
 
+    public enum GameMode {Relaxed, Normal, Manic}
+
+    public static GameMode curMode;
 
 
     /// <summary>
     /// depricated switch over to startGamefromLevel
     /// </summary>
-    private static void startGame()
+    private static void startGame(GameMode mode)
     {
         level = STARTING_LEVEL;
         lives = STARTING_LIVES;
         internalLevel = STARTING_LEVEL;
+        curMode = mode;
         Puased = false; 
     }
 
@@ -74,9 +81,9 @@ public class UiGameManager : MonoBehaviour
     /// Use to start game from a scene using scene index, review const scenes variable at top of file to know index
     /// </summary>
     /// <param name="levelToStartFrom">index of scene to start at</param>
-    public static void StartGameFromlevel(int levelToStartFrom)
+    public static void StartGameFromlevel(int levelToStartFrom, GameMode mode)
     {
-        startGame();
+        startGame(mode);
         PromptHandler.NextLevel = scenes[levelToStartFrom];
         PromptHandler.timerMax = 5f;
         SceneManager.LoadScene(prompts[levelToStartFrom]);
@@ -86,25 +93,27 @@ public class UiGameManager : MonoBehaviour
     /// Use this to start at a specific scene if you do not know the index of the scene in order
     /// </summary>
     /// <param name="levelToStartFrom">Name of scene to load</param>
-    public static void StartGameFromScene(string promptToStart,string levelToStartFrom)
+    public static void StartGameFromScene(string promptToStart, string levelToStartFrom, GameMode mode)
     {
-        startGame();
+        startGame(mode);
         PromptHandler.NextLevel = levelToStartFrom;
         PromptHandler.timerMax = 5f;
         SceneManager.LoadScene(promptToStart);
     }
 
+    
 
     void Awake()
     {
         if (DEBUG_MODE)
         {
-            startGame();
+            startGame(MODE_TO_DEBUG);
         }
         //startGame();
         lifeHandler.init(lives);
         timerHandler.init(levelTimer);
         levelCount.text = "Level : "+ ((int)(level+1)).ToString();
+        levelBacklightCount.text = "Level : "+ ((int)(level+1)).ToString();
 
     }
 
@@ -156,6 +165,7 @@ public class UiGameManager : MonoBehaviour
 
             if (internalLevel >= scenes.Length)
             {
+                Time.timeScale += 0.05f;
                 internalLevel = 0;
             }
 
@@ -176,10 +186,12 @@ public class UiGameManager : MonoBehaviour
                 }
                 catch
                 {
+                    /* THIS SHOULD NEVER NEED TO GO OFF
                     PromptHandler.NextLevel = scenes[scenes.Length-1];
                     PromptHandler.timerMax = 5f;
                     // if we do not have any more levels continuasly reload last scene
-                    sceneHandler.LoadLevel(prompts[prompts.Length-1],2);
+                    sceneHandler.LoadLevel(prompts[prompts.Length-1],2); 
+                    */
                 }
 
             }

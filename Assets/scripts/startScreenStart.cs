@@ -18,17 +18,27 @@ public class startScreenStart : MonoBehaviour
         
     }
 
-    public void startGame()
+    public void startGameNoraml()
     {
-        StartCoroutine(startGameHelper(1));
+        StartCoroutine(startGameHelper(1, UiGameManager.GameMode.Normal));
     }
 
-    private IEnumerator startGameHelper(int transitionTime)
+    public void startGameEasy()
+    {
+        StartCoroutine(startGameHelper(1, UiGameManager.GameMode.Relaxed));
+    }
+
+    public void startGameManic()
+    {
+        StartCoroutine(startGameHelper(1, UiGameManager.GameMode.Manic));
+    }
+
+    private IEnumerator startGameHelper(int transitionTime, UiGameManager.GameMode mode)
     {
         transition.SetTrigger("start");
 
         yield return new WaitForSeconds(transitionTime);
 
-        UiGameManager.StartGameFromlevel(0);
+        UiGameManager.StartGameFromlevel(0, mode);
     }
 }
