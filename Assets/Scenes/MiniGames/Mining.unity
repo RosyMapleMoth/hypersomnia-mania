@@ -566,7 +566,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 35351468919882067, guid: 3fe3882a6db3db8b3815193e4f926f08, type: 3}
       propertyPath: DEBUG_MODE
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 35351468919882073, guid: 3fe3882a6db3db8b3815193e4f926f08, type: 3}
       propertyPath: m_Name

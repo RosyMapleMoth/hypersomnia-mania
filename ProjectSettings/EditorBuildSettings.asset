@@ -32,4 +32,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MiniGames/moleBird/moleBirdPrompt.unity
     guid: 0be625ad3df398dad9a84e89999b82c7
+  - enabled: 1
+    path: Assets/Scenes/MiniGames/Mining.unity
+    guid: 333cf04e8597e144d9677abf61f9e298
+  - enabled: 1
+    path: Assets/Scenes/MiniGames/armidillo.unity
+    guid: d7a1c95c12a10f92aa276503bfb6dc53
   m_configObjects: {}

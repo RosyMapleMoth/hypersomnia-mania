@@ -8,9 +8,9 @@ public class UiGameManager : MonoBehaviour
     /// <summary>
     /// the scenes to go through in order DO NOT UPDATE OUTSIDE OF PREFAB
     /// </summary>
-    private static string[] scenes = {"Wienermoose","WitchCar","birdandMole"};
+    private static string[] scenes = {"Wienermoose","WitchCar","birdandMole","Mining","armidillo"};
 
-    private static string[] prompts = {"promptexample","promptexample","moleBirdPrompt"};
+    private static string[] prompts = {"promptexample","promptexample","moleBirdPrompt","promptexample","promptexample"};
 
     private const int maxlevel = 1;
 
