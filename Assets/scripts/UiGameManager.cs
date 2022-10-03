@@ -144,6 +144,11 @@ public class UiGameManager : MonoBehaviour
         }
         else
         {
+
+            if (failsOnTimeOut)
+            {
+                removeLife();
+            }
             level++;
             if (lives <= 0)
             {
