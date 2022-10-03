@@ -13,6 +13,8 @@ public class sheepTimer : MonoBehaviour
     public Image SheepThree; 
     public TextMeshProUGUI SheepThreeCount;
     public TextMeshProUGUI TimerCounter;
+    public TextMeshProUGUI TimerBacklightCounter;
+
 
     public bool start = false;
 
@@ -23,6 +25,7 @@ public class sheepTimer : MonoBehaviour
     public void TimerActiveUpdate(float timer)
     {
         TimerCounter.text = timer.ToString("N2");
+        TimerBacklightCounter.text = timer.ToString("N2");
         float remainder = (timer / 2f) % 1;
         if (remainder > 0.66f)
         {

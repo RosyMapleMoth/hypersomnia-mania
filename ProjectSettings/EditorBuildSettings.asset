@@ -5,19 +5,49 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Test scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/start.unity
+  - enabled: 0
+    path: Assets/Scenes/start.unity
     guid: c52b8d359760292b8a9000ab0a5e552a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Test scenes/example.unity
     guid: b59a4cd4e02dc82f683caf3a297ca099
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Test scenes/UiTest.unity
     guid: cd54a77dff0836da49d6664f249f72d6
   - enabled: 1
-    path: Assets/promptexample.unity
+    path: Assets/Scenes/Menu.unity
+    guid: 99a51d30341277648b238e6273dd3c79
+  - enabled: 1
+    path: Assets/Scenes/promptexample.unity
     guid: 2a248398ee4d10d50af5129c76f754a2
+  - enabled: 1
+    path: Assets/Scenes/MiniGames/WitchCar/WitchCar.unity
+    guid: 01d8d49ab9db1594c8295e03cd3215a3
+  - enabled: 1
+    path: Assets/Scenes/MiniGames/WienerMoose/Wienermoose.unity
+    guid: 0cda4a969294c3642b0feb7b200d60f6
+  - enabled: 1
+    path: Assets/Scenes/MiniGames/moleBird/birdandMole.unity
+    guid: 15657def6d5881fa08741238ea301a4d
+  - enabled: 1
+    path: Assets/Scenes/MiniGames/moleBird/moleBirdPrompt.unity
+    guid: 0be625ad3df398dad9a84e89999b82c7
+  - enabled: 1
+    path: Assets/Scenes/MiniGames/Minning/Mining.unity
+    guid: 333cf04e8597e144d9677abf61f9e298
+  - enabled: 1
+    path: Assets/Scenes/MiniGames/armidillo/armidillo.unity
+    guid: d7a1c95c12a10f92aa276503bfb6dc53
+  - enabled: 1
+    path: Assets/Scenes/MiniGames/birthday/BirthdayPrompt.unity
+    guid: 16afa0a65b472f710999412050cfb640
+  - enabled: 1
+    path: Assets/Scenes/MiniGames/WienerMoose/wienerMoosePrompt.unity
+    guid: c58acb81a2067e760b3d687064c3c336
+  - enabled: 1
+    path: Assets/Scenes/MiniGames/WitchCar/WitchCarPrompt.unity
+    guid: ecf9ce08e7c744523bf42544a756efd6
   m_configObjects: {}
